@@ -13,6 +13,9 @@ const searchButton = document.getElementById("searchButton")
 const searchInput = document.getElementById("searchInput")
 const randomBtn = document.getElementById("randomBtn")
 const toggleFavorite = document.getElementById("toggleFavorite")
+const showFavorites = document.getElementById("showFavorites")
+const textBoxParent = document.getElementById("textBoxParent")
+const favoriteList = document.getElementById("favoriteList")
 
 //List of async functions
 const getPokemon = async (pokemon) => {
@@ -22,6 +25,18 @@ const getPokemon = async (pokemon) => {
     return data;
 }
 
+const getSpecies = async(pokemon) =>{
+    const fetchData = await fetch (`https://pokeapi.co/api/v2/pokemon-species/${pokemon}/`)
+    const data = await fetchData.json()
+
+    return data
+}
+const getEvolution = async(evolutionChain) =>{
+    const fetchData = await fetch(evolutionChain)
+    const data = await fetchData.json()
+
+    return data
+}
 const getLocation = async (id) => {
     const fetchData = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/encounters`)
     const data = await fetchData.json()
@@ -39,6 +54,8 @@ let pokemonElements = [];
 let picture = "";
 let shinyPicture = "";
 let pokemonEvolution = [];
+let evolutionChain= "";
+let evolutionNames = []
 
 const parseData = async (userInput) => {
     let data;
@@ -50,9 +67,30 @@ const parseData = async (userInput) => {
         data = await getPokemon(userInput)
     }
 
+    
     //To get the ID and Name
     pokedex = data.id;
     pokemonAPIName = data.name;
+    
+    let speciesData = await getSpecies(pokedex);
+    evolutionChain = speciesData.evolution_chain.url;
+    let chainData = await getEvolution(evolutionChain)
+    //get evolution names
+
+    if(chainData.chain.evolves_to.length != null){
+
+        if (chainData.chain.evolves_to.length > 1){
+            for (let i = 0; i < chainData.chain.evolves_to.length; i++){
+                let checkPokeId = await getPokemon(chainData.chain.evolves_to[i].species.name)
+                if(checkPokeId.id < 650){
+                    evolutionNames.push(chainData.chain.evolves_to[i].species.name)
+                }
+            }
+        }
+        else{
+            checkForSpecies(chainData)
+        }
+    }
 
 
     if (pokedex > 649){
@@ -83,7 +121,7 @@ const parseData = async (userInput) => {
             pokemonEncounter.push(locationData[i].location_area.name);
         }
     }
-    else pokemonEncounter = "N/A";
+    else pokemonEncounter.push("N/A");
 
     //for loop to push all element types into variable 
     for (let i = 0; i < data.types.length; i++) {
@@ -92,9 +130,9 @@ const parseData = async (userInput) => {
 
 
     //To change teh innerText
-    pokemonName.innerText = pokemonAPIName;
-    pokedexNumber.innerText = pokedex;
-    pokemonType.innerText = pokemonElements.join(" | ")
+    pokemonName.innerText = "Name: " + pokemonAPIName;
+    pokedexNumber.innerText ="Pokedex#" + pokedex;
+    pokemonType.innerText ="Type: " + pokemonElements.join(" | ")
     pokemonPicture.src = picture;
     pokemonPicture.alt = "front default of " + pokemonAPIName;
     let determineFavorite = getLocalStorage();
@@ -107,6 +145,19 @@ const parseData = async (userInput) => {
 }
 
 parseData()
+
+const checkForSpecies = async (chainData)=>{
+    let newChain = chainData.chain;
+    do {
+        let checkPokeId = await getPokemon(newChain.species.name)
+        if (checkPokeId.id < 650){
+            evolutionNames.push(newChain.species.name)
+        }
+        
+        newChain = newChain.evolves_to[0];
+    } 
+    while (newChain != null);
+}
 
 //---Button event listeners---
 
@@ -136,15 +187,63 @@ showMoves.addEventListener("click", () => {
     showEvolution.classList.remove("border-red-500")
 })
 showEvolution.addEventListener("click", () => {
-    textBox.innerText = pokemonEvolution.join(" | ");
+    textBox.innerText = evolutionNames.join(" | ");
 
     showEvolution.classList.add("border-red-500")
     showLocation.classList.remove("border-red-500")
     showMoves.classList.remove("border-red-500")
     showAbilities.classList.remove("border-red-500")
 })
+
 showLocation.addEventListener("click", () => {
-    textBox.innerText = pokemonEncounter.join(" | ");
+    textBox.innerText = pokemonEncounter.join(" | ")
+
+    showLocation.classList.add("border-red-500")
+    showEvolution.classList.remove("border-red-500")
+    showMoves.classList.remove("border-red-500")
+    showAbilities.classList.remove("border-red-500")
+})
+
+const favoriteDiv= document.createElement("div")
+const favoriteHeader = document.createElement("h2");
+showFavorites.addEventListener("click", () => {
+
+    favoriteDiv.innerHTML=""
+    favoriteHeader.innerHTML=""
+
+    textBox.classList.add("hidden")
+
+    favoriteHeader.innerText = "Visit all your favorites"
+    favoriteList.appendChild(favoriteHeader)
+    favoriteList.classList.remove("hidden")
+    
+    favoriteDiv.id = "favoriteDiv"
+    favoriteDiv.className = "flex justify-around"
+    textBoxParent.appendChild(favoriteDiv)
+
+
+    getLocalStorage().forEach(element => {
+        const favoriteBtn = document.createElement("button")
+        favoriteBtn.id = element;
+        const favoriteBtnText = document.createElement("p")
+        favoriteBtnText.innerText = element;
+
+        favoriteBtnText.className= "hover:text-red-600 mt-8"
+
+        favoriteBtn.appendChild(favoriteBtnText)
+        favoriteDiv.appendChild(favoriteBtn);
+
+        favoriteBtn.addEventListener("click", ()=>{
+            clearData()
+            parseData(element)
+            favoriteList.classList.add("hidden")
+            favoriteList.removeChild(favoriteHeader)
+            textBoxParent.removeChild(favoriteDiv)
+            textBox.classList.remove("hidden")
+        })
+        
+    });
+    textBox.innerText = getLocalStorage().join(" | ")
 
     showLocation.classList.add("border-red-500")
     showEvolution.classList.remove("border-red-500")
@@ -170,6 +269,7 @@ const clearData = (message)=>{
     picture = "";
     shinyPicture = "";
     pokemonEvolution = [];
+    evolutionNames = []
     
     showLocation.classList.remove("border-red-500")
     showEvolution.classList.remove("border-red-500")

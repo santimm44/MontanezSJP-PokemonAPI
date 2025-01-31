@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="./src/output.css">
     <title>PokemonAPI</title>
 </head>
-<body class="grid h-screen md:grid-rows-12 md:grid-cols-12">
+<body class="grid h-screen grid-rows-12 grid-cols-12 ">
 
-    <div class="bg-[url(../resources/background.jpeg)] bg-amber-400 bg-cover col-start-1 col-end-13 row-start-1 row-end-13"></div>
+    <div class="bg-[url(../resources/background.jpeg)] bg-cover col-start-1 col-end-13 row-start-1 row-end-13"></div>
     
-    <div class="bg-[#DFC5FECC] border-4 col-start-2 rounded-[1rem] col-end-12 row-start-2 row-end-10 grid grid-cols-12 grid-rows-12">
-        <img id="pokemonPicture" class="col-start-1 col-end-5 row-start-2 row-end-8 h-full w-full " src="" alt="">
-        <div class="col-start-1 col-end-5 row-start-8 row-end-9 grid grid-cols-6 grid-rows-1">
+    <div class="bg-[#DFC5FECC] border-4 min-sm:col-start-2 rounded-[1rem] min-sm:col-end-12 min-sm:row-start-2 min-sm:row-end-10 grid grid-cols-12 grid-rows-12 max-sm:col-start-2 max-sm:col-end-12 max-sm:row-start-1 max-sm:mt-3 max-sm:row-end-12 ">
+        <img id="pokemonPicture" class="lg:col-start-1 lg:col-end-5 lg:row-start-2 lg:row-end-8 max-lg:col-start-2 max-lg:col-end-7 max-lg:row-start-1 max-lg:row-end-5 h-full w-full " src="" alt="">
+        <div class="lg:col-start-1 lg:col-end-5 lg:row-start-8 lg:row-end-9 max-lg:col-start-2 max-lg:col-end-7 max-lg:row-start-5 max-lg:row-end-6 grid grid-cols-6 grid-rows-1">
             <button id="togglePicture" class="col-start-1 col-end-2">
                 <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg" width="16px" viewBox="0 0 448 512"><path d="M438.6 150.6c12.5-12.5 12.5-32.8 0-45.3l-96-96c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.7 96 32 96C14.3 96 0 110.3 0 128s14.3 32 32 32l306.7 0-41.4 41.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l96-96zm-333.3 352c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 416 416 416c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0 41.4-41.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-96 96c-12.5 12.5-12.5 32.8 0 45.3l96 96z"/></svg>
             </button>
@@ -21,44 +21,49 @@
                 <svg class="h-full w-full regular" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8l0-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5l0 3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20-.1-.1s0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5l0 3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2l0-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"/></svg>
             </button>
         </div>
-        <button id="showLocation" class="hover:border-red-500 row-start-1 row-end-2 col-start-5 col-end-7 rounded-[4rem] border-4   bg-white">Location</button>
-        <button id="showAbilities" class=" hover:border-red-500 row-start-1 row-end-2 col-start-7 col-end-9 rounded-[4rem] border-4 bg-white">Abilities</button>
-        <button id="showMoves" class="hover:border-red-500 row-start-1 row-end-2 col-start-9 col-end-11 rounded-[4rem] border-4 bg-white">Moves</button>
-        <button id="showEvolution" class="hover:border-red-500  row-start-1 row-end-2 col-start-11 col-end-13 rounded-[4rem] border-4 bg-white">Evolution</button>
-        <div class="bg-[#ffffffBE] col-start-5 col-end-12 row-start-3 row-end-12 rounded-lg overflow-scroll">
-            <h1 id="pokemonType" class="">Element Type</h1>
-            <h1 id="pokemonName" class="row-start-2 row-end-3 col-start-2 col-end-4">Pokemon Name</h1>
-            <h1 id="pokedexNumber" class=" row-start-1 row-end-1 col-start-2 col-end-4 ">Pokedex #</h1>
-            <p id="textBox" class="ps-8"></p>
+        <button id="showLocation" class="hover:border-[#FF6961] hover:underline lg:row-start-1 lg:row-end-2 lg:col-start-5 lg:col-end-7 max-lg:col-start-8 max-lg:col-end-12 rounded-[4rem] border-4 mt-4  bg-white">Location</button>
+        <button id="showAbilities" class="hover:border-[#FF6961] hover:underline lg:row-start-1 lg:row-end-2 lg:col-start-7 lg:col-end-9 max-lg:col-start-8 max-lg:col-end-12 rounded-[4rem] border-4 mt-4 bg-white">Abilities</button>
+        <button id="showMoves" class="hover:border-[#FF6961] hover:underline lg:row-start-1 lg:row-end-2 lg:col-start-9 lg:col-end-11 max-lg:col-start-8 max-lg:col-end-12 rounded-[4rem] mt-4 border-4 bg-white">Moves</button>
+        <button id="showEvolution" class="hover:border-[#FF6961] hover:underline lg:row-start-1 lg:row-end-2 lg:col-start-11 lg:col-end-13 max-lg:col-start-8 max-lg:col-end-12 rounded-[4rem] mt-4 border-4 bg-white">Evolution</button>
+        <div class="bg-[#ffffffBE] lg:col-start-5 lg:col-end-12 lg:row-start-3 lg:row-end-12 max-lg:col-start-2 max-lg:col-end-12 max-lg:row-start-12 max-lg:row-end-6 rounded-lg overflow-y-scroll">
+            <div class="flex justify-between ps-8 pt-4 pe-8">
+                <h1 id="pokemonType" class="font-bold max-sm:text-[.9rem] max-sm:flex max-sm:flex-col"></h1>
+                <h1 id="pokemonName" class="font-bold max-sm:text-[.9rem] max-sm:flex max-sm:flex-col"></h1>
+                <h1 id="pokedexNumber" class="font-bold max-sm:text-[.9rem] max-sm:flex max-sm:flex-col"></h1>
+            </div>
+            <div id="favoriteList" class="hidden mt-8 flex justify-center">
+            </div>
+            <div id="textBoxParent">
+                <p id="textBox" class="mt-8  ps-8 pe-8"></p>
+            </div>
         </div>
 
         
     </div>
     
-    <button class="hover:bg-red-700 row-start-11 row-end-12 col-start-2 overflow-hidden col-end-4 rounded-[4rem] border-4 bg-white flex">
-        <h2 class="w-6/10 h-full bg-amber-400 align-baseline">
+    <button id="showFavorites" class="hover:bg-[#FF6961] mt-4 max-sm:row-start-12 max-sm:col-start-2 max-sm:col-end-5 row-start-11 row-end-12 lg:col-start-2 overflow-hidden lg:col-end-4 sm:col-start-2 sm:col-end-7 sm:row-start-11  rounded-[4rem] border-4 bg-white flex">
+        <h2 class="w-6/10 h-full align-baseline pt-1.5">
             Favorites
         </h2>
-        <div class="w-4/10 h-full bg-red-400" >
-            
+        <div class="w-4/10 h-full bg-[#DFC5FE] border-2 hover:bg-[#A020F0] rounded-[4rem] flex justify-center " >
+            <img class="h-full" src="./assets/heart-solid.svg" alt="heart icon">
         </div>
     </button>
 
     <!--Search-->
-    <div class="row-start-11 row-end-12 col-start-4 col-end-10 rounded-[4rem] overflow-hidden border-4 bg-white flex">
-        <input id="searchInput" class="bg-red-500 w-8/10 h-full ps-8" type="text" placeholder="Pokemon Or Pokedex#">
-        <button id="searchButton" class="bg-amber-400 w-2/10 h-full">
-            
+    <div class="hover:bg-[#FF6961] max-sm:row-start-12 max-sm:col-start-5 max-sm:col-end-9 lg:row-start-11 lg:row-end-12 lg:col-start-4 sm:row-start-10 sm:col-start-2 sm:col-end-12  mt-4 lg:col-end-10 rounded-[4rem] overflow-hidden border-4 bg-white flex">
+        <input id="searchInput" class=" w-8/10 h-full ps-8" type="text" placeholder="Search">
+        <button id="searchButton" class="bg-[#DFC5FE] border-2 hover:bg-[#A020F0] rounded-[4rem] w-2/10 h-full flex justify-center">
+            <img class="h-full w-8/10" src="./assets/arrow-right-solid.svg" alt="arrow-right-solid">
         </button>
     </div>
-
-    <button id="randomBtn" class="hover:bg-red-700 flex row-start-11 row-end-12 col-start-10 col-end-12 overflow-hidden rounded-[4rem] border-4 bg-white">
-        <h2 class="w-6/10 h-full bg-amber-400 align-baseline">
-            Randomize
-
+    
+    <button id="randomBtn" class="hover:bg-[#FF6961] max-sm:col-start-9 max-sm:col-end-12 max-sm:row-start-12 mt-4 flex x lg:row-start-11 lg:row-end-12 lg:col-start-10 lg:col-end-12 sm:col-start-7 sm:col-end-12 sm:row-start-11  overflow-hidden rounded-[4rem] border-4 bg-white">
+        <h2 class="w-6/10 h-full align-baseline pt-1.5">
+            Random
         </h2>
-        <div class="w-4/10 h-full bg-red-400" >
-            
+        <div class="w-4/10 h-full flex justify-center border-2 bg-[#DFC5FE] hover:bg-[#A020F0] rounded-[4rem]" >
+            <img class="h-full" src="./assets/shuffle-solid.svg" alt="shuffle icon">
         </div>
     </button>
 
