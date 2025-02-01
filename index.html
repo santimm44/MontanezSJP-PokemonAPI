@@ -8,7 +8,7 @@
 </head>
 <body class="grid h-screen grid-rows-12 grid-cols-12 ">
 
-    <div class="bg-[url(../resources/background.jpeg)] bg-cover col-start-1 col-end-13 row-start-1 row-end-13"></div>
+    <div class="bg-[url(../resources/background.jpeg)] bg-cover bg-no-repeat bg-center col-start-1 col-end-13 row-start-1 row-end-13"></div>
     
     <div class="bg-[#DFC5FECC] border-4 min-sm:col-start-2 rounded-[1rem] min-sm:col-end-12 min-sm:row-start-2 min-sm:row-end-10 grid grid-cols-12 grid-rows-12 max-sm:col-start-2 max-sm:col-end-12 max-sm:row-start-1 max-sm:mt-3 max-sm:row-end-12 ">
         <img id="pokemonPicture" class="lg:col-start-1 lg:col-end-5 lg:row-start-2 lg:row-end-8 max-lg:col-start-2 max-lg:col-end-7 max-lg:row-start-1 max-lg:row-end-5 h-full w-full " src="" alt="">
@@ -41,11 +41,11 @@
         
     </div>
     
-    <button id="showFavorites" class="hover:bg-[#FF6961] mt-4 max-sm:row-start-12 max-sm:col-start-2 max-sm:col-end-5 row-start-11 row-end-12 lg:col-start-2 overflow-hidden lg:col-end-4 sm:col-start-2 sm:col-end-7 sm:row-start-11  rounded-[4rem] border-4 bg-white flex">
-        <h2 class="w-6/10 h-full align-baseline pt-1.5">
+    <button id="showFavorites" class="hover:bg-[#FF6961] flex mt-4 max-sm:row-start-12 max-sm:col-start-2 max-sm:col-end-5 row-start-11 row-end-12 lg:col-start-2 overflow-hidden lg:col-end-4 sm:col-start-2 sm:col-end-7 sm:row-start-11  rounded-[4rem] border-4 bg-white">
+        <h2 class="w-6/10 flex justify-center mt-auto mb-auto h-auto">
             Favorites
         </h2>
-        <div class="w-4/10 h-full bg-[#DFC5FE] border-2 hover:bg-[#A020F0] rounded-[4rem] flex justify-center " >
+        <div class="w-4/10 h-full bg-[#DFC5FE] border-2 hover:bg-[#A020F0] rounded-[4rem] flex justify-center align-" >
             <img class="h-full" src="./assets/heart-solid.svg" alt="heart icon">
         </div>
     </button>
@@ -59,7 +59,7 @@
     </div>
     
     <button id="randomBtn" class="hover:bg-[#FF6961] max-sm:col-start-9 max-sm:col-end-12 max-sm:row-start-12 mt-4 flex x lg:row-start-11 lg:row-end-12 lg:col-start-10 lg:col-end-12 sm:col-start-7 sm:col-end-12 sm:row-start-11  overflow-hidden rounded-[4rem] border-4 bg-white">
-        <h2 class="w-6/10 h-full align-baseline pt-1.5">
+        <h2 class="w-6/10 flex justify-center mt-auto mb-auto h-auto">
             Random
         </h2>
         <div class="w-4/10 h-full flex justify-center border-2 bg-[#DFC5FE] hover:bg-[#A020F0] rounded-[4rem]" >

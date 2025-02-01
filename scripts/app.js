@@ -80,6 +80,7 @@ const parseData = async (userInput) => {
     if(chainData.chain.evolves_to.length != null){
 
         if (chainData.chain.evolves_to.length > 1){
+            evolutionNames.push(chainData.chain.species.name)
             for (let i = 0; i < chainData.chain.evolves_to.length; i++){
                 let checkPokeId = await getPokemon(chainData.chain.evolves_to[i].species.name)
                 if(checkPokeId.id < 650){
@@ -213,7 +214,7 @@ showFavorites.addEventListener("click", () => {
 
     textBox.classList.add("hidden")
 
-    favoriteHeader.innerText = "Visit all your favorites"
+    favoriteHeader.innerText = "Visit all your favorites\nPick a pokemon before continuing."
     favoriteList.appendChild(favoriteHeader)
     favoriteList.classList.remove("hidden")
     
